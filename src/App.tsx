@@ -51,6 +51,33 @@ function Gallery({ urls }: { urls: string[]}) {
 	);
 }
 
+// 親コンポーネント（Main）からのデータ（breed）の受け取り。
+//  voidは戻り値がないことを示す。
+function Form({ onFormSubmit }: { onFormSubmit: (breed: string) => void}) {
+	function handleSubmit(event) {
+		event.preventDefault();
+		const { breed } = event.target.elements;
+		onFormSubmit(breed.value);
+	}
+	return (
+		<div>
+			<form onSubmit={handleSubmit}>
+				<div className="flex items-center gap-2">
+					<div className="flex-1">
+						<select name="breed" defaultValue="shiba" className="border border-gray-300 rounded-md p-2 w-full">
+							<option value="shiba">Shiba</option>
+							<option value="akita">Akita</option>
+						</select>
+					</div>
+					<div className="w-24">
+						<button type="submit" className="w-full bg-blue-500 text-white rounded-md p-2">Reload</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	)
+}
+
 function Main() {
 	// urlsは画像URLの配列（現在の状態値）、setUrlsはurls（状態）を更新する関数。
 	// 初期値はnull。型は文字列の配列、またはnullと定義。
@@ -65,8 +92,20 @@ function Main() {
 		});
 	}, []);
 
+	// フォームからのデータの受け取り。
+	function reloadImages(breed: string) {
+		fetchImages(breed).then((urls) => {
+			setUrls(urls);
+		})
+	}
+
 	return (
 		<main>
+			<div className="py-10">
+				<div className="max-w-screen-sm mx-auto px-2">
+					<Form onFormSubmit={reloadImages} />
+				</div>
+			</div>
 			<section className="py-10">
 				<div className="max-w-screen-2xl mx-auto px-2">
 					<Gallery urls={urls}/>
