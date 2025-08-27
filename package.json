@@ -1,0 +1,29 @@
+{
+  "name": "react-practice-01",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint --ext ts,tsx .",
+    "lint:fix": "eslint --ext ts,tsx . --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ttcaf/practice_react_01.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/ttcaf/practice_react_01/issues"
+  },
+  "homepage": "https://github.com/ttcaf/practice_react_01#readme",
+  "devDependencies": {
+    "@eslint/js": "^9.34.0",
+    "eslint": "^9.34.0",
+    "eslint-plugin-react": "^7.37.5",
+    "globals": "^16.3.0",
+    "typescript-eslint": "^8.41.0"
+  }
+}
